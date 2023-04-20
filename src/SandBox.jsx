@@ -44,7 +44,7 @@ const SandBox = () => {
     {
       id: '420',
       name: 'Noel',
-      authors: ['El Don', 'master'],
+      authors: ['El Don', 'Master'],
     }
   ]
 
