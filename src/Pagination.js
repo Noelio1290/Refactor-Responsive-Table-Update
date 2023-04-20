@@ -1,6 +1,5 @@
-import React, { Component } from 'react'
-import TableCell from '@material-ui/core/TableCell'
-import TablePagination from '@material-ui/core/TablePagination'
+import React, { Component } from 'react';
+import {TableCell,TablePagination} from '@mui/material';
 export default class Pagination extends Component {
   handleChangePage = (event, page) => this.props.onChangePage(event, page)
 

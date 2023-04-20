@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
-import Grid from '@material-ui/core/Grid'
+import React, { Component } from 'react';
+import Grid from '@mui/material/Grid';
 
-import { CellRenderer, LabelRenderer } from './Renderer'
-import ExpandableListItem from './ExpandableListItem'
-import NoContent from './NoContent'
-import Pagination from './Pagination'
+import { CellRenderer, LabelRenderer } from './Renderer';
+import ExpandableListItem from './ExpandableListItem';
+import NoContent from './NoContent';
+import Pagination from './Pagination';
 import _isEqual from 'lodash';
 
 /**

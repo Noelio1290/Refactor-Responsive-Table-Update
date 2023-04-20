@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import Typography from '@material-ui/core/Typography';
-import withStyles from '@material-ui/core/styles/withStyles';
+import ExpandMore from '@mui/icons-material/ExpandMore'
+import {Accordion, AccordionSummary, AccordionDetails , Typography,} from '@mui/material';
+import {withStyles} from '@mui/styles';
 
 const styles = {
   summaryText: {
@@ -50,9 +47,9 @@ class ExpandableListItem extends Component {
       : ExpansionPanelProps;
 
     return (
-      <ExpansionPanel className={panelClass && panelClass} {...rootProps} >
-        <ExpansionPanelSummary
-          expandIcon={<ExpandMoreIcon {...ExpansionPanelMoreIconProps} />}
+      <Accordion className={panelClass && panelClass} {...rootProps} >
+        <AccordionSummary
+          expandIcon={<ExpandMore {...ExpansionPanelMoreIconProps} />}
           {...ExpansionPanelSummaryProps}
         >
           <Typography
@@ -65,8 +62,8 @@ class ExpandableListItem extends Component {
           >
             {summary}
           </Typography>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails {...ExpansionPanelDetailsProps}>
+        </AccordionSummary>
+        <AccordionDetails  {...ExpansionPanelDetailsProps}>
           <Typography
             classes={{
               root: classes.detailsText,
@@ -77,8 +74,8 @@ class ExpandableListItem extends Component {
           >
             {details}
           </Typography>
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
+        </AccordionDetails >
+      </Accordion>
     )
   }
 }

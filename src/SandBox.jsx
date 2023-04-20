@@ -30,16 +30,24 @@ const SandBox = () => {
       id: '4567',
       name: 'Bar',
       authors: ['Joe', 'Mike'],
+    },
+    {
+      id: '4567',
+      name: 'Bar',
+      authors: ['Joe', 'Mike'],
+    },
+    {
+      id: '4567',
+      name: 'Bar',
+      authors: ['Joe', 'Mike'],
     }
   ]
 
   return (
-    <>
       <ResponsiveTable
         columns={columns}
         data={data}
       />
-    </>
   );
 };
 
