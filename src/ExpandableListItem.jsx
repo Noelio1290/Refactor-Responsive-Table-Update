@@ -17,7 +17,6 @@ const styles = {
  * Expandable component with header text (summary) and expandable description text (details)
  */
 const ExpandableListItem = (props) => {
- 
 
   const {
     classes,

@@ -1,29 +1,23 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Table, TableBody, TableCell, TableFooter, TableHead, TableRow } from '@mui/material'
 import { CellRenderer, LabelRenderer } from './Renderer'
 import NoContent from './NoContent'
 import Pagination from './Pagination'
-import _isEqual from 'lodash';
 /**
  * Simple read only table with header and body
  */
-export default class DataTable extends Component {
-  shouldComponentUpdate(nextProps) {
-    const {enableShouldComponentUpdate, data} = this.props;
-    if (enableShouldComponentUpdate) {
-      return (!_isEqual(nextProps.data, data));
-    }
-    return true;
-  }
 
-  handleChangePage = (event, page) => this.props.onChangePage(event, page);
+const DataTable = (props) => {
 
-  getRowClass = (index) => {
-    const {rowsClassArray} = this.props;
+  const handleChangePage = (event, page) => {
+    props.onChangePage(event, page);
+  };
+
+  const getRowClass = (index) => {
+    const {rowsClassArray} = props;
     return rowsClassArray && rowsClassArray[index] ? rowsClassArray[index] : '';
-  }
+  };
 
-  render() {
     const {
       columns,
       count,
@@ -40,7 +34,7 @@ export default class DataTable extends Component {
       TableHeadRowProps,
       TablePaginationProps,
       TableProps,
-    } = this.props;
+    } = props;
 
     if (
       !Array.isArray(data) ||
@@ -49,7 +43,7 @@ export default class DataTable extends Component {
       columns.length === 0
     ) {
       return <NoContent text={noContentText} />
-    }
+    };
 
     return (
       <Table {...TableProps}>
@@ -67,7 +61,7 @@ export default class DataTable extends Component {
         </TableHead>
         <TableBody {...TableBodyProps}>
           {data.map((row, rowIndex) => (
-            <TableRow key={rowIndex} className={this.getRowClass(rowIndex)} {...TableBodyRowProps}>
+            <TableRow key={rowIndex} className={getRowClass(rowIndex)} {...TableBodyRowProps}>
               {columns.map((column, columnIndex) => (
                 <TableCell
                   key={`${rowIndex}-${columnIndex}`}
@@ -88,12 +82,14 @@ export default class DataTable extends Component {
                 rowsPerPage={rowsPerPage}
                 page={page}
                 TablePaginationProps={TablePaginationProps}
-                onChangePage={this.handleChangePage}
+                onChangePage={handleChangePage}
               />
             </TableRow>
           </TableFooter>
         }
       </Table>
     )
-  }
+  
 }
+
+export default DataTable;

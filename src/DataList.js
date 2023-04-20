@@ -1,32 +1,23 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Grid from '@mui/material/Grid';
-
 import { CellRenderer, LabelRenderer } from './Renderer';
 import ExpandableListItem from './ExpandableListItem';
 import NoContent from './NoContent';
 import Pagination from './Pagination';
-import _isEqual from 'lodash';
 
 /**
  * List with expandable items - mobile table analogue
  */
-export default class DataList extends Component {
-  shouldComponentUpdate(nextProps) {
-    const {enableShouldComponentUpdate, data} = this.props;
-    if (enableShouldComponentUpdate) {
-      return (!_isEqual(nextProps.data, data));
-    }
-    return true;
-  }
+const DataList = (props) => {
 
-  handleChangePage = (event, page) => this.props.onChangePage(event, page)
+  const handleChangePage = (event, page) => props.onChangePage(event, page)
 
-  getRowClass = (index) => {
-    const {rowsClassArray} = this.props;
+  const getRowClass = (index) => {
+    const {rowsClassArray} = props;
     return rowsClassArray && rowsClassArray[index] ? rowsClassArray[index] : '';
-  }
+  };
 
-  createListItemTitle = (columns, row, data) => {
+  const createListItemTitle = (columns, row, data) => {
     const primaryColumns = columns.filter(column => column.primary)
     return primaryColumns.length === 0
       ? <CellRenderer column={columns[0]} row={row} data={data} />
@@ -37,7 +28,7 @@ export default class DataList extends Component {
         .reduce((prev, next) => [prev, ' ', next]) // divide item headers by space
   }
 
-  createListItemDescription = (columns, row, data, excludePrimary) => (
+  const createListItemDescription = (columns, row, data, excludePrimary) => (
     <div>
       {columns
         .filter(column => !excludePrimary || !column.primary)
@@ -54,7 +45,6 @@ export default class DataList extends Component {
     </div>
   )
 
-  render() {
     const {
       columns,
       count,
@@ -74,22 +64,23 @@ export default class DataList extends Component {
       ExpansionPanelSummaryTypographyProps,
       SelectedExpansionPanelProps,
       TablePaginationProps,
-    } = this.props
+    } = props
+
     if (!Array.isArray(data)
       || data.length === 0
       || !Array.isArray(columns)
       || columns.length === 0) {
       return <NoContent text={noContentText} />
-    }
+    };
 
     return (
       <div>
         {data.map((row, index) => (
           <ExpandableListItem
             key={index}
-            panelClass={this.getRowClass(index)}
-            summary={this.createListItemTitle(columns, row, data)}
-            details={this.createListItemDescription(columns, row, data, excludePrimaryFromDetails)}
+            panelClass={getRowClass(index)}
+            summary={createListItemTitle(columns, row, data)}
+            details={createListItemDescription(columns, row, data, excludePrimaryFromDetails)}
             selected={row.selected}
             scrollToSelected={scrollToSelected}
             scrollOptions={scrollOptions}
@@ -114,10 +105,11 @@ export default class DataList extends Component {
             rowsPerPage={rowsPerPage}
             page={page}
             TablePaginationProps={TablePaginationProps}
-            onChangePage={this.handleChangePage}
+            onChangePage={handleChangePage}
           />
         }
       </div>
     )
-  }
 }
+
+export default DataList;

@@ -1,7 +1,7 @@
 import React from "react";
 import ResponsiveTable from './ResponsiveTable';
 
-const SandBox = () => {
+const Sandbox = () => {
 
   const columns = [
     {
@@ -56,4 +56,4 @@ const SandBox = () => {
   );
 };
 
-export default SandBox;
+export default Sandbox;
