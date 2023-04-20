@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Hidden, } from '@mui/material';
 import {withStyles} from '@mui/styles';
 import DataList from './DataList';
@@ -11,10 +11,12 @@ const styles = {
 /**
  * Responsive read-only table (desktop devices) <-> read-only expandable list (tablet/mobile devices) for material-ui 1.0-beta.
  */
-class ResponsiveTable extends Component {
-  handleChangePage = (event, page) => this.props.onChangePage(event, page);
+const ResponsiveTable = (props) => {
 
-  render() {
+  const handleChangePage = (event, page) => {
+    props.onChangePage(event, page);
+  };
+
     const {
       classes,
       columns,
@@ -44,7 +46,7 @@ class ResponsiveTable extends Component {
       TablePaginationProps,
       TableProps,
       enableShouldComponentUpdate,
-    } = this.props;
+    } = props;
 
     return (
       <div className={classes.root}>
@@ -69,7 +71,7 @@ class ResponsiveTable extends Component {
             TableHeadRowProps={TableHeadRowProps}
             TablePaginationProps={TablePaginationProps}
             TableProps={TableProps}
-            onChangePage={this.handleChangePage}
+            onChangePage={handleChangePage}
           />
         </Hidden>
 
@@ -98,12 +100,11 @@ class ResponsiveTable extends Component {
               ExpansionPanelSummaryTypographyProps
             }
             TablePaginationProps={TablePaginationProps}
-            onChangePage={this.handleChangePage}
+            onChangePage={handleChangePage}
           />
         </Hidden>
       </div>
     )
-  }
 }
 
 export default withStyles(styles)(ResponsiveTable);
