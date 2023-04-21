@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ResponsiveTable from './ResponsiveTable';
 import { Box } from "@mui/material";
 
@@ -107,9 +107,6 @@ const Sandbox = ({
     },
   ]
 }) => {
-  const [currentPage,setcurrentPage] = useState(0)
-  const [rowsPerPage,setRowsPerPage] = useState(6)
-  const [tableVisibleContacts,setTableVisibleContacts] = useState([])
 
   const columns = [
     {
@@ -128,33 +125,13 @@ const Sandbox = ({
     },
   ]
 
-  const changePage = (event,page) => {
-    console.log(tableVisibleContacts)
-    let currentPage = (page - 1) * rowsPerPage
-    let currentPerPage = rowsPerPage * page
-    console.log(currentPage)
-    console.log(currentPerPage)
-
-    setTableVisibleContacts(data.slice(( page ) * rowsPerPage,rowsPerPage * (page + 1)))
-    
-    setcurrentPage(page)
-  }
-
-  useEffect(()=>{
-    setTableVisibleContacts(data.slice(currentPage,rowsPerPage))
-  },[])
-
   return (
     <Box sx={{ borderRadius: '8px', margin:5, border:'2px solid',justifyContent:'center', }}>
       <ResponsiveTable
         columns={columns}
-        data={tableVisibleContacts}
+        data={data}
         showPagination= {true}
-        page={currentPage}
-        rowsPerPage={rowsPerPage}
-        rowsPerPageOptions={[5, 10, 25]}
         count={data.length}
-        onChangePage={changePage}
       />
     </Box>
   );

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState,useEffect } from 'react';
 import { Hidden, } from '@mui/material';
 import {withStyles} from '@mui/styles';
 import DataList from './DataList';
@@ -13,22 +13,15 @@ const styles = {
  */
 const ResponsiveTable = (props) => {
 
-  const handleChangePage = (event, page) => {
-    props.onChangePage(event, page);
-  };
-
     const {
       classes,
       columns,
-      count,
       data,
       rowsClassArray,
       excludePrimaryFromDetails,
       noContentText,
       tableBreakpoints,
       listBreakpoints,
-      page,
-      rowsPerPage,
       showPagination,
       implementation,
       ExpansionPanelDetailsProps,
@@ -48,6 +41,27 @@ const ResponsiveTable = (props) => {
       enableShouldComponentUpdate,
     } = props;
 
+  const [currentPage,setcurrentPage] = useState(0)
+  const [rowsPerPage,setRowsPerPage] = useState(5)
+  const [tableVisibleContacts,setTableVisibleContacts] = useState([])
+
+  const changePage = (event,page) => {
+    console.log(tableVisibleContacts)
+    let currentPage = (page - 1) * rowsPerPage
+    let currentPerPage = rowsPerPage * page
+    console.log(currentPage)
+    console.log(currentPerPage)
+
+    setTableVisibleContacts(data.slice(( page ) * rowsPerPage,rowsPerPage * (page + 1)))
+    
+    setcurrentPage(page)
+  }
+
+  useEffect(()=>{
+    setTableVisibleContacts(data.slice(currentPage,rowsPerPage))
+  },[])
+
+
     return (
       <div className={classes.root}>
         {/* DESKTOP BIG TABLE */}
@@ -56,11 +70,11 @@ const ResponsiveTable = (props) => {
           <DataTable
             enableShouldComponentUpdate={enableShouldComponentUpdate}
             columns={columns}
-            count={count}
-            data={data}
+            count={data.length}
+            data={tableVisibleContacts}
             rowsClassArray={rowsClassArray}
             noContentText={noContentText}
-            page={page}
+            page={currentPage}
             rowsPerPage={rowsPerPage}
             showPagination={showPagination}
             TableBodyCellProps={TableBodyCellProps}
@@ -71,7 +85,7 @@ const ResponsiveTable = (props) => {
             TableHeadRowProps={TableHeadRowProps}
             TablePaginationProps={TablePaginationProps}
             TableProps={TableProps}
-            onChangePage={handleChangePage}
+            onChangePage={changePage}
           />
         </Hidden>
 
@@ -81,12 +95,12 @@ const ResponsiveTable = (props) => {
           <DataList
             enableShouldComponentUpdate={enableShouldComponentUpdate}
             columns={columns}
-            count={count}
-            data={data}
+            count={data.length}
+            data={tableVisibleContacts}
             rowsClassArray={rowsClassArray}
             excludePrimaryFromDetails={excludePrimaryFromDetails}
             noContentText={noContentText}
-            page={page}
+            page={currentPage}
             rowsPerPage={rowsPerPage}
             showPagination={showPagination}
             ExpansionPanelDetailsProps={ExpansionPanelDetailsProps}
@@ -100,7 +114,7 @@ const ResponsiveTable = (props) => {
               ExpansionPanelSummaryTypographyProps
             }
             TablePaginationProps={TablePaginationProps}
-            onChangePage={handleChangePage}
+            onChangePage={changePage}
           />
         </Hidden>
       </div>

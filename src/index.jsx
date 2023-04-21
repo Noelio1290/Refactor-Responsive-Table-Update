@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import Sandbox from './Sandbox';
+import Sandbox from './SandBox';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
