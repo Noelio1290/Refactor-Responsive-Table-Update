@@ -22,7 +22,7 @@ const Pagination = (props) => {
         rowsPerPage={rowsPerPage}
         rowsPerPageOptions={[rowsPerPage]}
         page={page}
-        onChangePage={handleChangePage}
+        onPageChange={handleChangePage}
       />
     )
 }

@@ -53,6 +53,7 @@ const DataTable = (props) => {
               <TableCell
                 key={`${column.label}-${index}`}
                 {...TableHeadCellProps}
+                align='center'
               >
                 <LabelRenderer column={column} data={data} />
               </TableCell>
@@ -66,6 +67,7 @@ const DataTable = (props) => {
                 <TableCell
                   key={`${rowIndex}-${columnIndex}`}
                   {...TableBodyCellProps}
+                  align='center'
                 >
                   <CellRenderer column={column} row={row} data={data} />
                 </TableCell>
