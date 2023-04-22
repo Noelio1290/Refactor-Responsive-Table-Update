@@ -22,26 +22,13 @@ const ExpandableListItem = (props) => {
     classes,
     panelClass,
     details,
-    selected,
     summary,
-    ExpansionPanelDetailsProps,
-    ExpansionPanelDetailsTypographyProps,
-    ExpansionPanelMoreIconProps,
-    ExpansionPanelProps,
-    ExpansionPanelSummaryProps,
-    ExpansionPanelSummaryTypographyProps,
-    SelectedExpansionPanelProps,
   } = props;
 
-  const rootProps = selected
-    ? { ...ExpansionPanelProps, ...SelectedExpansionPanelProps }
-    : ExpansionPanelProps;
-
   return (
-    <Accordion className={panelClass && panelClass} {...rootProps} >
+    <Accordion className={panelClass && panelClass} >
       <AccordionSummary
-        expandIcon={<ExpandMore {...ExpansionPanelMoreIconProps} />}
-        {...ExpansionPanelSummaryProps}
+        expandIcon={<ExpandMore />}
       >
         <Typography
           classes={{
@@ -49,19 +36,17 @@ const ExpandableListItem = (props) => {
           }}
           gutterBottom
           variant="subtitle1"
-          {...ExpansionPanelSummaryTypographyProps}
         >
           {summary}
         </Typography>
       </AccordionSummary>
-      <AccordionDetails  {...ExpansionPanelDetailsProps}>
+      <AccordionDetails  >
         <Typography
           classes={{
             root: classes.detailsText,
           }}
           gutterBottom
           component="div"
-          {...ExpansionPanelDetailsTypographyProps}
         >
           {details}
         </Typography>

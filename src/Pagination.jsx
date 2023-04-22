@@ -11,12 +11,10 @@ const Pagination = (props) => {
     count,
     rowsPerPage,
     page,
-    TablePaginationProps,
   } = props
 
     return (
       <TablePagination
-        {...TablePaginationProps}
         component={component || TableCell}
         count={count}
         rowsPerPage={rowsPerPage}

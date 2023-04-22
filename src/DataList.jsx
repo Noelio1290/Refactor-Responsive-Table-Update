@@ -53,17 +53,7 @@ const DataList = (props) => {
       noContentText,
       page,
       rowsPerPage,
-      scrollToSelected,
-      scrollOptions,
-      showPagination,
-      ExpansionPanelDetailsProps,
-      ExpansionPanelDetailsTypographyProps,
-      ExpansionPanelMoreIconProps,
-      ExpansionPanelProps,
-      ExpansionPanelSummaryProps,
-      ExpansionPanelSummaryTypographyProps,
-      SelectedExpansionPanelProps,
-      TablePaginationProps,
+      showPagination
     } = props
 
     if (!Array.isArray(data)
@@ -81,20 +71,6 @@ const DataList = (props) => {
             panelClass={getRowClass(index)}
             summary={createListItemTitle(columns, row, data)}
             details={createListItemDescription(columns, row, data, excludePrimaryFromDetails)}
-            selected={row.selected}
-            scrollToSelected={scrollToSelected}
-            scrollOptions={scrollOptions}
-            ExpansionPanelDetailsProps={ExpansionPanelDetailsProps}
-            ExpansionPanelDetailsTypographyProps={
-              ExpansionPanelDetailsTypographyProps
-            }
-            ExpansionPanelMoreIconProps={ExpansionPanelMoreIconProps}
-            ExpansionPanelProps={ExpansionPanelProps}
-            ExpansionPanelSummaryProps={ExpansionPanelSummaryProps}
-            ExpansionPanelSummaryTypographyProps={
-              ExpansionPanelSummaryTypographyProps
-            }
-            SelectedExpansionPanelProps={SelectedExpansionPanelProps}
           />
         ))}
         {
@@ -104,7 +80,6 @@ const DataList = (props) => {
             count={count}
             rowsPerPage={rowsPerPage}
             page={page}
-            TablePaginationProps={TablePaginationProps}
             onChangePage={handleChangePage}
           />
         }

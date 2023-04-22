@@ -17,27 +17,10 @@ const ResponsiveTable = (props) => {
     classes,
     columns,
     data,
-    rowsClassArray,
-    excludePrimaryFromDetails,
     noContentText,
     tableBreakpoints,
     listBreakpoints,
     implementation,
-    ExpansionPanelDetailsProps,
-    ExpansionPanelDetailsTypographyProps,
-    ExpansionPanelMoreIconProps,
-    ExpansionPanelProps,
-    ExpansionPanelSummaryProps,
-    ExpansionPanelSummaryTypographyProps,
-    TableBodyCellProps,
-    TableBodyProps,
-    TableBodyRowProps,
-    TableHeadCellProps,
-    TableHeadProps,
-    TableHeadRowProps,
-    TablePaginationProps,
-    TableProps,
-    enableShouldComponentUpdate,
   } = props;
 
   const [currentPage,setcurrentPage] = useState(0);
@@ -72,27 +55,13 @@ const ResponsiveTable = (props) => {
       {/* MOBILE EXPANDABLE LIST OF CARDS */}
       <Hidden only={listBreakpoints || [ 'md','lg','xl' ]} implementation={implementation || 'js'}>
         <DataList
-          enableShouldComponentUpdate={enableShouldComponentUpdate}
           columns={columns}
           count={data.length}
           data={tableVisibleContacts}
-          rowsClassArray={rowsClassArray}
-          excludePrimaryFromDetails={excludePrimaryFromDetails}
           noContentText={noContentText}
           page={currentPage}
           rowsPerPage={rowsPerPage}
           showPagination={true}
-          ExpansionPanelDetailsProps={ExpansionPanelDetailsProps}
-          ExpansionPanelDetailsTypographyProps={
-            ExpansionPanelDetailsTypographyProps
-          }
-          ExpansionPanelMoreIconProps={ExpansionPanelMoreIconProps}
-          ExpansionPanelProps={ExpansionPanelProps}
-          ExpansionPanelSummaryProps={ExpansionPanelSummaryProps}
-          ExpansionPanelSummaryTypographyProps={
-            ExpansionPanelSummaryTypographyProps
-          }
-          TablePaginationProps={TablePaginationProps}
           onChangePage={changePage}
         />
       </Hidden>
