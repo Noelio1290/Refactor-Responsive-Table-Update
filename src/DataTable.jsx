@@ -26,14 +26,6 @@ const DataTable = (props) => {
       page,
       rowsPerPage,
       showPagination,
-      TableBodyCellProps,
-      TableBodyProps,
-      TableBodyRowProps,
-      TableHeadCellProps,
-      TableHeadProps,
-      TableHeadRowProps,
-      TablePaginationProps,
-      TableProps,
     } = props;
 
     if (
@@ -46,13 +38,12 @@ const DataTable = (props) => {
     };
 
     return (
-      <Table {...TableProps}>
-        <TableHead {...TableHeadProps}>
-          <TableRow {...TableHeadRowProps}>
+      <Table >
+        <TableHead >
+          <TableRow >
             {columns.map((column, index) => (
               <TableCell
                 key={`${column.label}-${index}`}
-                {...TableHeadCellProps}
                 align='center'
               >
                 <LabelRenderer column={column} data={data} />
@@ -60,13 +51,12 @@ const DataTable = (props) => {
             ))}
           </TableRow>
         </TableHead>
-        <TableBody {...TableBodyProps}>
+        <TableBody >
           {data.map((row, rowIndex) => (
-            <TableRow key={rowIndex} className={getRowClass(rowIndex)} {...TableBodyRowProps}>
+            <TableRow key={rowIndex} className={getRowClass(rowIndex)} >
               {columns.map((column, columnIndex) => (
                 <TableCell
                   key={`${rowIndex}-${columnIndex}`}
-                  {...TableBodyCellProps}
                   align='center'
                 >
                   <CellRenderer column={column} row={row} data={data} />
@@ -83,7 +73,6 @@ const DataTable = (props) => {
                 count={count}
                 rowsPerPage={rowsPerPage}
                 page={page}
-                TablePaginationProps={TablePaginationProps}
                 onChangePage={handleChangePage}
               />
             </TableRow>
