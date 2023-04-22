@@ -165,6 +165,7 @@ const Sandbox = ({
       <ResponsiveTable
         columns={columns}
         data={data}
+        rowsPerPage={5}
       />
     </Box>
   );

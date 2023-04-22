@@ -1,7 +1,6 @@
 import React from 'react'
 import { Table, TableBody, TableCell, TableFooter, TableHead, TableRow } from '@mui/material'
 import { CellRenderer, LabelRenderer } from './Renderer'
-import NoContent from './NoContent'
 import Pagination from './Pagination'
 /**
  * Simple read only table with header and body
@@ -22,7 +21,6 @@ const DataTable = (props) => {
       columns,
       count,
       data,
-      noContentText,
       page,
       rowsPerPage,
       showPagination,
@@ -34,7 +32,7 @@ const DataTable = (props) => {
       !Array.isArray(columns) ||
       columns.length === 0
     ) {
-      return <NoContent text={noContentText} />
+      return <></>
     };
 
     return (

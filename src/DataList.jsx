@@ -1,8 +1,7 @@
 import React from 'react';
-import Grid from '@mui/material/Grid';
+import { Box, Grid } from '@mui/material';
 import { CellRenderer, LabelRenderer } from './Renderer';
 import ExpandableListItem from './ExpandableListItem';
-import NoContent from './NoContent';
 import Pagination from './Pagination';
 
 /**
@@ -29,7 +28,7 @@ const DataList = (props) => {
   }
 
   const createListItemDescription = (columns, row, data, excludePrimary) => (
-    <div>
+    <Box>
       {columns
         .filter(column => !excludePrimary || !column.primary)
         .map((column, index) => (
@@ -42,7 +41,7 @@ const DataList = (props) => {
             </Grid>
           </Grid>
       ))}
-    </div>
+    </Box>
   )
 
     const {
@@ -50,7 +49,6 @@ const DataList = (props) => {
       count,
       data,
       excludePrimaryFromDetails,
-      noContentText,
       page,
       rowsPerPage,
       showPagination
@@ -60,11 +58,11 @@ const DataList = (props) => {
       || data.length === 0
       || !Array.isArray(columns)
       || columns.length === 0) {
-      return <NoContent text={noContentText} />
+      return <></>
     };
 
     return (
-      <div>
+      <Box>
         {data.map((row, index) => (
           <ExpandableListItem
             key={index}
@@ -83,7 +81,7 @@ const DataList = (props) => {
             onChangePage={handleChangePage}
           />
         }
-      </div>
+      </Box>
     )
 }
 
