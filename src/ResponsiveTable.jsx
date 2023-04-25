@@ -1,24 +1,16 @@
 import React, { useState,useEffect } from 'react';
-import { Box, Hidden, } from '@mui/material';
-import {withStyles} from '@mui/styles';
+import { Box } from '@mui/material';
 import DataList from './DataList';
 import DataTable from './DataTable';
 
-const styles = {
-  root: {},
-}
-
 /**
- * Responsive read-only table (desktop devices) <-> read-only expandable list (tablet/mobile devices) for material-ui 1.0-beta.
+ * Responsive read-only table (desktop devices) <-> read-only expandable list (tablet/mobile devices) for "@mui/material": "5.10.14",
  */
 const ResponsiveTable = (props) => {
 
   const {
     columns,
     data,
-    tableBreakpoints,
-    listBreakpoints,
-    implementation,
     rowsPerPage
   } = props;
 
@@ -34,11 +26,19 @@ const ResponsiveTable = (props) => {
     setTableVisibleContacts(data.slice(currentPage,rowsPerPage))
   },[]);
 
-
   return (
     <Box>
       {/* DESKTOP BIG TABLE */}
-      <Hidden only={tableBreakpoints || [ 'xs','sm' ]} implementation={implementation || 'js'}>
+      <Box 
+        sx={{
+          display: {
+            xs: 'none',
+            sm: 'none',
+            md: 'flex',
+            lg: 'flex',
+          },
+        }}
+      >
         <DataTable
           columns={columns}
           count={data.length}
@@ -48,9 +48,18 @@ const ResponsiveTable = (props) => {
           showPagination={true}
           onChangePage={changePage}
         />
-      </Hidden>
+      </Box>
       {/* MOBILE EXPANDABLE LIST OF CARDS */}
-      <Hidden only={listBreakpoints || [ 'md','lg','xl' ]} implementation={implementation || 'js'}>
+      <Box 
+        sx={{
+          display: {
+            xs: 'flex',
+            sm: 'flex',
+            md: 'none',
+            lg: 'none',
+          },
+        }}
+      >
         <DataList
           columns={columns}
           count={data.length}
@@ -60,9 +69,9 @@ const ResponsiveTable = (props) => {
           showPagination={true}
           onChangePage={changePage}
         />
-      </Hidden>
+      </Box>
     </Box>
   );
 };
 
-export default withStyles(styles)(ResponsiveTable);
+export default ResponsiveTable;
