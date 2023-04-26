@@ -57,7 +57,7 @@ const ResponsiveTable = (props) => {
             sm: 'flex',
             md: 'none',
             lg: 'none',
-          },
+          },     
         }}
       >
         <DataList

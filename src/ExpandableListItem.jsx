@@ -13,21 +13,21 @@ const ExpandableListItem = (props) => {
   } = props;
 
   return (
-    <Accordion >
+    <Accordion sx={{ minWidth:'100%',width:'100%' }} >
       <AccordionSummary
         expandIcon={<ExpandMore />}
       >
         <Typography
-          gutterBottom
-          variant="subtitle1"
+          variant="h6"
+          sx={{ color:'black', fontSize:20 }}
         >
           {summary}
         </Typography>
       </AccordionSummary>
       <AccordionDetails  >
         <Typography
-          gutterBottom
-          component="div"
+          variant="h6"
+          sx={{marginBottom:5}}
         >
           {details}
         </Typography>

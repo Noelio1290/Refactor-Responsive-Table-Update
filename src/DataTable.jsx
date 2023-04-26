@@ -36,7 +36,7 @@ const DataTable = (props) => {
     };
 
     return (
-      <Table >
+      <Table sx={{ minWidth:'100%'}} >
         <TableHead >
           <TableRow >
             {columns.map((column, index) => (
@@ -57,7 +57,7 @@ const DataTable = (props) => {
                   key={`${rowIndex}-${columnIndex}`}
                   align='center'
                 >
-                  <CellRenderer column={column} row={row} data={data} />
+                  <CellRenderer column={column} row={row} data={data} sx={{width:'100%'}} />
                 </TableCell>
               ))}
             </TableRow>

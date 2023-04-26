@@ -28,17 +28,51 @@ const DataList = (props) => {
   }
 
   const createListItemDescription = (columns, row, data, excludePrimary) => (
-    <Box>
+    <Box >
       {columns
         .filter(column => !excludePrimary || !column.primary)
         .map((column, index) => (
-          <Grid key={`${column.label}-${index}`} container>
-            <Grid item xs>
-              <LabelRenderer column={column} data={data} />
-            </Grid>
-            <Grid item xs>
-              <CellRenderer column={column} row={row} data={data} />
-            </Grid>
+          <Grid 
+            key={`${column.label}-${index}`} 
+            container
+            sx={{ flexDirection:'row',marginBottom:1}}
+
+          >
+            <Box 
+              sx={{ 
+                width:'100px',
+                marginRight:1,
+                
+              }}
+            >
+              <Grid item xs
+                sx={{ 
+                  color:'black',
+                  fontFamily: "Helvetica" ,
+                  fontSize:15,
+                  width:'100px',
+                  }} 
+              >
+                <LabelRenderer 
+                  column={column} 
+                  data={data} 
+                  />
+              </Grid>
+            </Box>
+            <Box 
+              sx={{ 
+                width:'150px',
+              }}
+            >
+              <Grid item xs 
+                sx={{ 
+                  color:'grey',
+                  fontSize:14,
+                }} 
+                >
+                <CellRenderer column={column} row={row} data={data} />
+              </Grid>
+            </Box>
           </Grid>
       ))}
     </Box>
@@ -62,7 +96,7 @@ const DataList = (props) => {
     };
 
     return (
-      <Box>
+      <Box sx={{ width:'100%'}}>
         {data.map((row, index) => (
           <ExpandableListItem
             key={index}
