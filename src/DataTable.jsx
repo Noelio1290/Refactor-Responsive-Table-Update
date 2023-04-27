@@ -7,33 +7,16 @@ import Pagination from './Pagination'
  */
 
 const DataTable = (props) => {
-
-  const handleChangePage = (event, page) => {
-    props.onChangePage(event, page);
-  };
-
-  const getRowClass = (index) => {
-    const {rowsClassArray} = props;
-    return rowsClassArray && rowsClassArray[index] ? rowsClassArray[index] : '';
-  };
-
-    const {
-      columns,
-      count,
-      data,
-      page,
-      rowsPerPage,
-      showPagination,
-    } = props;
-
-    if (
-      !Array.isArray(data) ||
-      data.length === 0 ||
-      !Array.isArray(columns) ||
-      columns.length === 0
-    ) {
-      return <></>
-    };
+  
+  const {
+    columns,
+    count,
+    data,
+    page,
+    rowsPerPage,
+    showPagination,
+    onChangePage,
+  } = props;
 
     return (
       <Table sx={{ minWidth:'100%'}} >
@@ -51,7 +34,7 @@ const DataTable = (props) => {
         </TableHead>
         <TableBody >
           {data.map((row, rowIndex) => (
-            <TableRow key={rowIndex} className={getRowClass(rowIndex)} >
+            <TableRow key={rowIndex} >
               {columns.map((column, columnIndex) => (
                 <TableCell
                   key={`${rowIndex}-${columnIndex}`}
@@ -71,7 +54,7 @@ const DataTable = (props) => {
                 count={count}
                 rowsPerPage={rowsPerPage}
                 page={page}
-                onChangePage={handleChangePage}
+                onChangePage={onChangePage}
               />
             </TableRow>
           </TableFooter>

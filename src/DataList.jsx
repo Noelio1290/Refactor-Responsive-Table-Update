@@ -9,12 +9,17 @@ import Pagination from './Pagination';
  */
 const DataList = (props) => {
 
-  const handleChangePage = (event, page) => props.onChangePage(event, page)
+  const {
+    columns,
+    count,
+    data,
+    page,
+    rowsPerPage,
+    showPagination,
+    onChangePage,
+  } = props
 
-  const getRowClass = (index) => {
-    const {rowsClassArray} = props;
-    return rowsClassArray && rowsClassArray[index] ? rowsClassArray[index] : '';
-  };
+  const handleChangePage = (event, page) => onChangePage(event, page)
 
   const createListItemTitle = (columns, row, data) => {
     const primaryColumns = columns.filter(column => column.primary)
@@ -24,13 +29,12 @@ const DataList = (props) => {
         .map(column => (
           <CellRenderer key={column.key} column={column} row={row} data={data} />
         ))
-        .reduce((prev, next) => [prev, ' ', next]) // divide item headers by space
+        .reduce((prev, next) => [...prev, ' ', next], [])
   }
 
-  const createListItemDescription = (columns, row, data, excludePrimary) => (
+  const createListItemDescription = (columns, row, data) => (
     <Box >
       {columns
-        .filter(column => !excludePrimary || !column.primary)
         .map((column, index) => (
           <Grid 
             key={`${column.label}-${index}`} 
@@ -78,31 +82,15 @@ const DataList = (props) => {
     </Box>
   )
 
-    const {
-      columns,
-      count,
-      data,
-      excludePrimaryFromDetails,
-      page,
-      rowsPerPage,
-      showPagination
-    } = props
-
-    if (!Array.isArray(data)
-      || data.length === 0
-      || !Array.isArray(columns)
-      || columns.length === 0) {
-      return <></>
-    };
+    
 
     return (
       <Box sx={{ width:'100%'}}>
         {data.map((row, index) => (
           <ExpandableListItem
             key={index}
-            panelClass={getRowClass(index)}
             summary={createListItemTitle(columns, row, data)}
-            details={createListItemDescription(columns, row, data, excludePrimaryFromDetails)}
+            details={createListItemDescription(columns, row, data)}
           />
         ))}
         {

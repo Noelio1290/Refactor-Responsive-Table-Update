@@ -1,21 +1,21 @@
 import React from 'react';
-import {TableCell,TablePagination} from '@mui/material';
+import { TablePagination } from '@mui/material';
 
 const Pagination = (props) => {
-
-  const handleChangePage = (event, page) => {
-    props.onChangePage(event, page)
-  };
+  
   const {
     component,
     count,
     rowsPerPage,
     page,
+    onChangePage,
   } = props
+
+  const handleChangePage = (event, page) => onChangePage(event, page)
 
     return (
       <TablePagination
-        component={component || TableCell}
+        component={component}
         count={count}
         rowsPerPage={rowsPerPage}
         rowsPerPageOptions={[rowsPerPage]}

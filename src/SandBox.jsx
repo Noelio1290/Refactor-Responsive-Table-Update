@@ -1,6 +1,6 @@
 import React from "react";
 import ResponsiveTable from './ResponsiveTable';
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import mockClients from "./clients";
 
 const Sandbox = () => {
@@ -31,10 +31,28 @@ const Sandbox = () => {
     {
       key: 'edit',
       label: '',
+      render:() => 
+        <Button 
+          variant="contained" 
+          color="success" 
+          size="small"
+          sx={{width:'100px'}}
+        >
+          editar
+        </Button>
     },
     {
       key: 'delete',
       label: '',
+      render:() => 
+        <Button 
+          variant="contained" 
+          color="error" 
+          size="small"
+          sx={{width:'100px'}}
+        >
+          eliminar
+        </Button>
     }
   ]
 

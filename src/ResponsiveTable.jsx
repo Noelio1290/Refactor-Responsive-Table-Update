@@ -11,19 +11,19 @@ const ResponsiveTable = (props) => {
   const {
     columns,
     data,
-    rowsPerPage
+    rowsPerPage,
   } = props;
 
-  const [currentPage,setcurrentPage] = useState(0);
-  const [tableVisibleContacts,setTableVisibleContacts] = useState([]);
+  const [currentPage,setCurrentPage] = useState(0);
+  const [tableVisibleData,setTableVisibleData] = useState([]);
 
   const changePage = (event,page) => {  
-    setTableVisibleContacts(data.slice(( page ) * rowsPerPage,rowsPerPage * (page + 1)));
-    setcurrentPage(page);
+    setTableVisibleData(data.slice(( page ) * rowsPerPage,rowsPerPage * (page + 1)));
+    setCurrentPage(page);
   };
-
+  
   useEffect(()=>{
-    setTableVisibleContacts(data.slice(currentPage,rowsPerPage))
+    setTableVisibleData(data.slice(0,rowsPerPage))
   },[]);
 
   return (
@@ -42,10 +42,10 @@ const ResponsiveTable = (props) => {
         <DataTable
           columns={columns}
           count={data.length}
-          data={tableVisibleContacts}
+          data={tableVisibleData}
           page={currentPage}
           rowsPerPage={rowsPerPage}
-          showPagination={true}
+          showPagination
           onChangePage={changePage}
         />
       </Box>
@@ -63,10 +63,10 @@ const ResponsiveTable = (props) => {
         <DataList
           columns={columns}
           count={data.length}
-          data={tableVisibleContacts}
+          data={tableVisibleData}
           page={currentPage}
           rowsPerPage={rowsPerPage}
-          showPagination={true}
+          showPagination
           onChangePage={changePage}
         />
       </Box>

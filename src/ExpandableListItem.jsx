@@ -19,7 +19,6 @@ const ExpandableListItem = (props) => {
       >
         <Typography
           variant="h6"
-          sx={{ color:'black', fontSize:20 }}
         >
           {summary}
         </Typography>
@@ -27,7 +26,6 @@ const ExpandableListItem = (props) => {
       <AccordionDetails  >
         <Typography
           variant="h6"
-          sx={{marginBottom:5}}
         >
           {details}
         </Typography>
