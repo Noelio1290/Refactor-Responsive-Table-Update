@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState,useEffect,useMemo } from 'react';
 import { Box } from '@mui/material';
 import DataList from './DataList';
 import DataTable from './DataTable';
@@ -21,10 +21,14 @@ const ResponsiveTable = (props) => {
     setTableVisibleData(data.slice(( page ) * rowsPerPage,rowsPerPage * (page + 1)));
     setCurrentPage(page);
   };
+
+  const memoizedData = useMemo(() => {
+    return data.slice(0, 15);
+  }, [data]);
   
   useEffect(()=>{
-    setTableVisibleData(data.slice(0,rowsPerPage))
-  },[]);
+    setTableVisibleData(memoizedData)
+  },[memoizedData]);
 
   return (
     <Box>
